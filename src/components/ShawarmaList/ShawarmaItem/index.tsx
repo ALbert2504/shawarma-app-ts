@@ -1,7 +1,6 @@
 import {FC} from "react";
 import {Card} from "react-bootstrap";
 import {ShawarmaItemProps} from "./ShawarmaItem.interface";
-import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const ShawarmaItem: FC<ShawarmaItemProps> = ({
   meat,

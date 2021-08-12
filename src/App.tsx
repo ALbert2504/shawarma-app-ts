@@ -13,7 +13,7 @@ function App() {
       const typedName = prompt('Ի՞նչ է Ձեր անունը։', '');
       setName(typedName);
     }
-  }, []);
+  }, [name, setName]);
 
   return (
     <div className="App">

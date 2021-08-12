@@ -11,7 +11,7 @@ const ShawarmaList: FC = () => {
 
   useEffect(() => {
     dispatch(getShawarmas());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -19,9 +19,8 @@ const ShawarmaList: FC = () => {
         {orders.length ? <Row className="align-items-stretch">
           {orders.map(item => {
             return (
-              <Col className="mb-4" xs={12} md={6} lg={4} xl={3}>
+              <Col key={item.id} className="mb-4" xs={12} md={6} lg={4} xl={3}>
                 <ShawarmaItem
-                  key={item.id}
                   meat={item.meat}
                   exceptions={item.exceptions}
                   size={item.size}
