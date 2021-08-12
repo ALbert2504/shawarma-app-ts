@@ -1,48 +1,68 @@
-import { FC } from 'react';
-import { useState } from 'react';
-import { supabase } from '../../client';
-import { Form, Button } from 'react-bootstrap';
-import { Fields } from './CreateShawarma.interface';
+import {FC} from 'react';
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {Form, Button, Container} from 'react-bootstrap';
+import {Fields} from './CreateShawarma.interface';
+import {createShawarma} from '../../store/actions/shawarma.action';
+import useLocalStorage from "../../hooks/useLocalStorage";
+import moment from "moment";
 
-const initialSTate = {
+const initialState = {
   meat: '',
   exceptions: '',
-  size: ''
+  size: '',
+  name: '',
+  created: ''
 };
 
-const CreateShawarma: FC<{
-  // Todo change to a valid type
-  createShawarma: any
-}> = ({createShawarma}) => {
-  const [fields, setFields] = useState<Fields>(initialSTate);
+const CreateShawarma: FC = () => {
+  const dispatch = useDispatch();
+  const [fields, setFields] = useState<Fields>(initialState);
+  const [name] = useLocalStorage('name', null);
 
   const handleChange = (e: any): void => {
-    const { name, value } = e.target;
+    const {name: fieldName, value} = e.target;
 
     setFields(prevState => ({
       ...prevState,
-      [name]: value
+      [fieldName]: value
     }));
   };
+
+  const handleSubmit = (e: any): void => {
+    e.preventDefault();
+    dispatch(createShawarma({
+      ...fields,
+      name,
+      created: moment().format('Do MMMM YYYY')
+    }));
+  };
+
   return (
-    <Form onSubmit={(e) => createShawarma(e, fields)}>
-      <Form.Control
-        onChange={handleChange}
-        type="text"
-        name="meat"
-        placeholder="Ինչի" />
-      <Form.Control
-        onChange={handleChange}
-        type="text"
-        name="exceptions"
-        placeholder="Բացառություններ" />
-      <Form.Control
-        onChange={handleChange}
-        type="text"
-        name="size"
-        placeholder="Չափսը" />
-      <Button type="submit" className="mt-2" variant="primary">Ավելացնել պատվեր</Button>
-    </Form>
+    <div>
+      <Container>
+        <h2 className="text-primary">Ողջույն {name}</h2>
+        <p className="text-primary">Ինչ պարամետրերով շաուրմա կուզե՞ք այսօր, որ Ալբերտը պատվիրի Ձեր համար։ 💙😊</p>
+        <Form onSubmit={handleSubmit}>
+          <Form.Control
+            onChange={handleChange}
+            type="text"
+            name="meat"
+            placeholder="Ինչի (Օր․ Հավի/Խոզի)"/>
+          <Form.Control
+            onChange={handleChange}
+            type="text"
+            name="exceptions"
+            placeholder="Բացառություններ (Օր․ սոխ, կծու․․․)"/>
+          <Form.Control
+            onChange={handleChange}
+            type="text"
+            name="size"
+            placeholder="Չափսը (Օր․ Մեծ/Միջին)"/>
+          <Button type="submit" className="mt-2" variant="primary">Ավելացնել պատվեր</Button>
+        </Form>
+      </Container>
+    </div>
   );
 };
 

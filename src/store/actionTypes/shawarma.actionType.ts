@@ -1,0 +1,1 @@
+export const GET_SHAWARMAS: string = 'GET_SHAWARMAS';

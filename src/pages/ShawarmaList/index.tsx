@@ -1,26 +1,42 @@
-import { FC } from "react";
+import {FC, useEffect} from "react";
+import {Row, Col, Container, Alert} from 'react-bootstrap';
+import {useDispatch, useSelector} from "react-redux";
 import ShawarmaItem from '../../components/ShawarmaList/ShawarmaItem';
-import { ShawarmaListProps } from "./ShawarmaList.interface";
-import styles from './ShawarmaList.module.css';
+import {RootState} from "../../store/rootReducer";
+import {getShawarmas} from "../../store/actions/shawarma.action";
 
-const ShawarmaList: FC<ShawarmaListProps> = ({data}) => {
-  console.log(data);
-  
+const ShawarmaList: FC = () => {
+  const dispatch = useDispatch();
+  const {orders} = useSelector((state: RootState) => state.shawarma);
+
+  useEffect(() => {
+    dispatch(getShawarmas());
+  }, []);
+
   return (
-    <ul className={styles['shawarma-list']}>
-      {data.map(item => {
-        console.log(item);
-        
-        return (
-          <ShawarmaItem
-            key={item.id}
-            meat={item.meat}
-            exceptions={item.exceptions}
-            size={item.size}
-          />
-        )
-      })}
-    </ul>
+    <div>
+      <Container>
+        {orders.length ? <Row className="align-items-stretch">
+          {orders.map(item => {
+            return (
+              <Col className="mb-4" xs={12} md={6} lg={4} xl={3}>
+                <ShawarmaItem
+                  key={item.id}
+                  meat={item.meat}
+                  exceptions={item.exceptions}
+                  size={item.size}
+                  name={item.name}
+                  created={item.created}
+                />
+              </Col>
+            )
+          })}
+        </Row> : <Alert variant="danger" className="text-center">
+          Այսօր շաուրմա չի պատվիրվել
+        </Alert>}
+      </Container>
+    </div>
+
   );
 };
 
