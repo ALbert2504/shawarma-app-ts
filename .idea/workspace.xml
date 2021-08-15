@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="eb751aa1-2e5a-4f9f-867f-9d30cd37d3b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CreateShawarma/CreateShawarma.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateItem/CreateShawarma/CreateShawarma.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CreateShawarma/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateItem/CreateShawarma/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ShawarmaList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ShawarmaList/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/shawarma.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/shawarma.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/interfaces/shawarma.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/interfaces/shawarma.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/rootReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/rootReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +44,12 @@
     <property name="ts.external.directory.path" value="C:\Users\alber\OneDrive\Рабочий стол\FrontEnd\shawarma-app\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alber\OneDrive\Рабочий стол\FrontEnd\shawarma-app\src\HOC\IsAuthentificated" />
+      <recent name="C:\Users\alber\OneDrive\Рабочий стол\FrontEnd\shawarma-app\src\components\CreateItem" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -41,7 +59,12 @@
       <option name="presentableId" value="Default" />
       <updated>1628791479031</updated>
       <workItem from="1628791483446" duration="4318000" />
-      <workItem from="1628795850589" duration="2902000" />
+      <workItem from="1628795850589" duration="4085000" />
+      <workItem from="1628861901012" duration="101000" />
+      <workItem from="1628874466925" duration="6610000" />
+      <workItem from="1628887501141" duration="1951000" />
+      <workItem from="1628938379958" duration="13486000" />
+      <workItem from="1629026261684" duration="1316000" />
     </task>
     <servers />
   </component>

@@ -1,25 +1,16 @@
 import {Route} from 'react-router-dom';
-import CreateShawarma from './pages/CreateShawarma';
+import CreateItem from "./pages/CreateItem";
 import ShawarmaList from './pages/ShawarmaList';
+import Auth from "./pages/Auth";
 import Header from "./components/shared/Header";
-import useLocalStorage from "./hooks/useLocalStorage";
-import {useEffect} from "react";
 
 function App() {
-  const [name, setName] = useLocalStorage('name', null);
-
-  useEffect(() => {
-    if(!name) {
-      const typedName = prompt('Ի՞նչ է Ձեր անունը։', '');
-      setName(typedName);
-    }
-  }, [name, setName]);
-
   return (
     <div className="App">
       <Header />
       <main className="py-4">
-        <Route path="/" exact component={CreateShawarma} />
+        <Route path="/auth" component={Auth} />
+        <Route path="/" exact component={CreateItem} />
         <Route path="/shawarma-list" component={ShawarmaList} />
       </main>
     </div>

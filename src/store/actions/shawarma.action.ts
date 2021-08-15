@@ -1,13 +1,23 @@
 import { supabase } from "../../client";
 import { GET_SHAWARMAS } from "../actionTypes/shawarma.actionType";
-import { Fields } from "../../pages/CreateShawarma/CreateShawarma.interface";
+import store from 'store';
+import { Fields } from "../../components/CreateItem/CreateShawarma/CreateShawarma.interface";
 
-export const getShawarmas = () => async (dispatch: any) => {
-  const { data } = await supabase.from('shawarmas').select();
+export const getShawarmas = () => async (dispatch: any, getState: any) => {
+  const user = store.get('user') ?? getState().auth.user;
+  let _data: any;
+
+  if(user.role === 'organizer') {
+    const { data } = await supabase.from('shawarmas').select();
+    _data = data;
+  } else {
+    const { data } = await supabase.from('shawarmas').select().eq('user_id', user.id);
+    _data = data;
+  }
 
   dispatch({
     type: GET_SHAWARMAS,
-    payload: data
+    payload: _data
   });
 };
 

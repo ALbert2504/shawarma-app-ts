@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ShawarmaItem from '../../components/ShawarmaList/ShawarmaItem';
 import {RootState} from "../../store/rootReducer";
 import {getShawarmas} from "../../store/actions/shawarma.action";
+import RequireAuthentication from "../../HOC/IsAuthenticated";
 
 const ShawarmaList: FC = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ShawarmaList: FC = () => {
                   meat={item.meat}
                   exceptions={item.exceptions}
                   size={item.size}
-                  name={item.name}
+                  name={item.user_name}
                   created={item.created}
                 />
               </Col>
@@ -39,4 +40,4 @@ const ShawarmaList: FC = () => {
   );
 };
 
-export default ShawarmaList;
+export default RequireAuthentication(ShawarmaList);

@@ -1,0 +1,12 @@
+.auth-form {
+    max-width: 375px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.inform-action:hover {
+    cursor: pointer;
+}

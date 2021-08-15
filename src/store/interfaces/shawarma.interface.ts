@@ -4,7 +4,7 @@ export interface ShawarmaState {
     meat: string
     exceptions: string
     size: string
-    name: string
+    user_name: string
     created: string
   }[]
 }

@@ -1,24 +1,25 @@
 import {FC} from 'react';
 import {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Form, Button, Container} from 'react-bootstrap';
 import {Fields} from './CreateShawarma.interface';
-import {createShawarma} from '../../store/actions/shawarma.action';
-import useLocalStorage from "../../hooks/useLocalStorage";
+import {createShawarma} from '../../../store/actions/shawarma.action';
 import moment from "moment";
+import {RootState} from "../../../store/rootReducer";
 
 const initialState = {
   meat: '',
   exceptions: '',
   size: '',
-  name: '',
-  created: ''
+  created: '',
+  user_id: '',
+  user_name: ''
 };
 
 const CreateShawarma: FC = () => {
   const dispatch = useDispatch();
+  const {user} = useSelector((state: RootState) => state.auth);
   const [fields, setFields] = useState<Fields>(initialState);
-  const [name] = useLocalStorage('name', null);
 
   const handleChange = (e: any): void => {
     const {name: fieldName, value} = e.target;
@@ -33,7 +34,8 @@ const CreateShawarma: FC = () => {
     e.preventDefault();
     dispatch(createShawarma({
       ...fields,
-      name,
+      user_id: user.id,
+      user_name: user.name,
       created: moment().format('Do MMMM YYYY')
     }));
   };
@@ -41,8 +43,8 @@ const CreateShawarma: FC = () => {
   return (
     <div>
       <Container>
-        <h2 className="text-primary">Ողջույն {name}</h2>
-        <p className="text-primary">Ինչ պարամետրերով շաուրմա կուզե՞ք այսօր, որ Ալբերտը պատվիրի Ձեր համար։ 💙😊</p>
+        <h2 className="text-primary">Ողջույն {user?.name}</h2>
+        <p className="text-primary">Ի՞նչ պարամետրերով շաուրմա կուզեք այսօր, որ Ալբերտը պատվիրի Ձեզ համար։ 💙😊</p>
         <Form onSubmit={handleSubmit}>
           <Form.Control
             onChange={handleChange}
