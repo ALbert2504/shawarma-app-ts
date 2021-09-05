@@ -98,7 +98,7 @@ const CreateShawarma: FC = () => {
           </div>
           <p className="text-primary">
             <sup className="text-danger">*</sup>
-            Բոլոր շաուրմաները պատվիրվելու են լավաշով, միայն լավաշի առկա չլինելու դեպքում կպgատվիրվեն լոշիկիվ
+            Բոլոր շաուրմաները պատվիրվելու են լավաշով, միայն լավաշի առկա չլինելու դեպքում կպատվիրվեն լոշիկիվ
           </p>
           <Button type="submit" className="mt-2" variant="primary">Ավելացնել պատվեր</Button>
         </Form>
