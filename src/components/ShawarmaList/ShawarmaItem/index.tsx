@@ -15,7 +15,7 @@ const ShawarmaItem: FC<ShawarmaItemProps> = ({
       <Card.Body>
         <Card.Title>Պատվիրող։ {name}</Card.Title>
         <Card.Text>
-          Առանց {exceptions}
+          {exceptions && `Առանց ${exceptions.join(', ')}`}
         </Card.Text>
       </Card.Body>
       <Card.Footer>

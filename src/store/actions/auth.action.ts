@@ -26,7 +26,6 @@ export const signIn = (sentData: { email: string, password: string }, history: a
 
   const {data}: any = await supabase.from('profiles').select().eq('auth_id', user.id).single();
 
-  console.log(user);
 
   dispatch({
     type: SIGN_IN,
@@ -40,7 +39,6 @@ export const signIn = (sentData: { email: string, password: string }, history: a
 };
 
 export const getUser = (id: string) => async (dispatch: any) => {
-  console.log(id);
   const {data}: any = await supabase.from('profiles').select().eq('auth_id', id).single();
   store.set('user', data);
   dispatch({

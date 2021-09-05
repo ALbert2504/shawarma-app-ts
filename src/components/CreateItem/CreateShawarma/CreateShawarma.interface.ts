@@ -1,6 +1,6 @@
 export interface Fields {
   meat: string
-  exceptions: string
+  exceptions: string | null
   size: string
   created: string
   user_id: number | string

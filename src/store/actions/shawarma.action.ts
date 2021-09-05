@@ -24,6 +24,8 @@ export const getShawarmas = () => async (dispatch: any, getState: any) => {
 export const createShawarma = (fields: Fields) => async (dispatch: any) => {
   await supabase.from('shawarmas').insert([fields]).single();
   const { data } = await supabase.from('shawarmas').select();
+
+  alert('Ձեր պատվերը հաջողությամբ գրանցված է։')
   
   dispatch({
     type: GET_SHAWARMAS,
