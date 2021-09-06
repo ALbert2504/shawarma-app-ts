@@ -17,25 +17,40 @@ export const signUp = (sentUser: any) => async () => {
   };
 
   await supabase.from('profiles').insert([data]).single();
+
+  alert('Խնդրում ենք ստուգել Ձդր էլէկտրոնային փոստը:');
 };
 
 // TODO change any type of data
 export const signIn = (sentData: { email: string, password: string }, history: any) => async (dispatch: any) => {
-  const _data: any = await supabase.auth.signIn(sentData);
-  const {user} = _data;
+  try {
+    const _data: any = await supabase.auth.signIn(sentData);
+    const {user, error} = _data;
 
-  const {data}: any = await supabase.from('profiles').select().eq('auth_id', user.id).single();
-
-
-  dispatch({
-    type: SIGN_IN,
-    payload: {
-      user: data,
-      access_token: _data.data.access_token
+    if(error) {
+      console.log(1)
+      throw error;
     }
-  });
 
-  history.push('/');
+    console.log(2)
+
+    const {data}: any = await supabase.from('profiles').select().eq('auth_id', user.id).single();
+
+
+
+    dispatch({
+      type: SIGN_IN,
+      payload: {
+        user: data,
+        access_token: _data.data.access_token
+      }
+    });
+
+    history.push('/');
+  } catch (e) {
+    console.log(e);
+    alert('Սխալ էլ․ փոստ կամ գաղտնաբառ:');
+  }
 };
 
 export const getUser = (id: string) => async (dispatch: any) => {

@@ -45,6 +45,7 @@ const Auth: FC = () => {
       <Container>
         <Form className={`${styles['auth-form']} rounded border border-primary py-4 px-5`} onSubmit={handleSubmit}>
           {isSignUp && <Form.Control
+            className="mb-2"
             placeholder="Name"
             type="text"
             name="name"
@@ -52,6 +53,7 @@ const Auth: FC = () => {
             onChange={handleChange}
           />}
           <Form.Control
+            className="mb-2"
             placeholder="Email"
             type="email"
             name="email"
