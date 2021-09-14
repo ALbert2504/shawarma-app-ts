@@ -1,10 +1,12 @@
-import {FC, useEffect, useMemo} from 'react';
+import {FC, useMemo} from 'react';
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from 'react-redux';
 import {Form, Button, Container, Row, Col} from 'react-bootstrap';
 import {Fields} from './CreateShawarma.interface';
 import {createShawarma} from '../../../store/actions/shawarma.action';
 import moment from "moment";
+import {motion} from "framer-motion";
+import {componentVariants, childVariants} from "./CreateShawarma.motion";
 import {RootState} from "../../../store/rootReducer";
 import styles from './CreateShawarma.module.css';
 
@@ -35,42 +37,47 @@ const CreateShawarma: FC = () => {
   };
 
   const price = useMemo(() => {
-    if(meat  === 'Խոզի') {
-      if(size === 'Մեծ') {
-        return 1400;
-      } else {
-        return 1000;
-      }
-    } else {
-      if(size === 'Մեծ') {
-        return 1300;
-      } else {
-        return 900;
-      }
+    if (size === 'Մեծ') {
+      return 1300;
     }
-  }, [meat, size]);
+    return 900;
+  }, [size]);
   console.log(price);
 
   return (
-    <div>
+    <motion.div
+      variants={componentVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Container>
         <Row className="align-items-start">
           <Col xs={12} lg={9}>
             <h2 className="text-primary">Ողջույն {user?.name}</h2>
-            <p className="text-primary">Ի՞նչ պարամետրերով շաուրմա կուզեք այսօր, որ Ալբերտը պատվիրի Ձեզ համար։ 🖤😊</p>
+            <motion.p
+              className="text-primary"
+              variants={childVariants}
+            >
+              Ի՞նչ պարամետրերով շաուրմա կուզեք այսօր, որ Ալբերտը պատվիրի Ձեզ համար։ 🖤😊
+            </motion.p>
             <Form onSubmit={handleSubmit(handleCreateShawarma)}>
-              <Form.Group className="p-4 border border-secondary rounded my-4">
+              <motion.div
+                className="form-group p-4 border border-secondary rounded my-4"
+                variants={childVariants}
+              >
                 <p className="mb-2 text-primary">Ինչի մսով</p>
                 <select
                   {...register("meat", {required: true})}
                   id="meat"
                   className={`form-select ${!!errors.meat ? 'is-invalid' : ''}`}
                 >
-                  <option value="Խոզի">Խոզի</option>
-                  <option value="Հավի">Հավի</option>
+                  <option value="Խոզ + հավ միքս">Խոզ + հավ միքս</option>
                 </select>
-              </Form.Group>
-              <Form.Group className="p-4 border border-secondary rounded my-4">
+              </motion.div>
+              <motion.div
+                className="form-group p-4 border border-secondary rounded my-4"
+                variants={childVariants}
+              >
                 <p className="mb-2 text-primary">Ինչ չափի</p>
                 <select
                   {...register("size", {required: true})}
@@ -79,8 +86,11 @@ const CreateShawarma: FC = () => {
                   <option value="Մեծ">Մեծ</option>
                   <option value="Միջին">Միջին</option>
                 </select>
-              </Form.Group>
-              <div className="p-4 border border-secondary rounded my-4">
+              </motion.div>
+              <motion.div
+                className="p-4 border border-secondary rounded my-4"
+                variants={childVariants}
+              >
                 <p className="mb-2 text-primary">Բացառություններ</p>
                 <Form.Group className={`d-flex align-items-center justify-content-start ${styles['exceptions-checkbox']}`}>
                   <input
@@ -126,15 +136,26 @@ const CreateShawarma: FC = () => {
                     Մայոնեզ
                   </Form.Label>
                 </Form.Group>
-              </div>
-              <p className="text-primary">
+              </motion.div>
+              <motion.p
+                className="text-primary"
+                variants={childVariants}
+              >
                 <sup className="text-danger">*</sup>
                 Բոլոր շաուրմաները պատվիրվելու են լավաշով, միայն լավաշի առկա չլինելու դեպքում կպատվիրվեն լոշիկիվ
-              </p>
-              <Button type="submit" className="mt-2" variant="primary">Ավելացնել պատվեր</Button>
+              </motion.p>
+              <motion.button
+                type="submit" className="mt-2 btn btn-primary"
+                variants={childVariants}
+              >
+                Ավելացնել պատվեր
+              </motion.button>
             </Form>
           </Col>
-          <Col className="p-3 border rounded border-secondary" xs={12} lg={3}>
+          <motion.div
+            className="p-3 border rounded border-secondary col-xs-12 col-lg-3"
+            variants={childVariants}
+          >
             <h3>Summary</h3>
             <Form.Group className="mb-3">
               <p className="mb-0">
@@ -163,12 +184,11 @@ const CreateShawarma: FC = () => {
                 <Form.Control type="text" value={price} />
               </div>
             </Form.Group>
-
-          </Col>
+          </motion.div>
         </Row>
 
       </Container>
-    </div>
+    </motion.div>
   );
 };
 
